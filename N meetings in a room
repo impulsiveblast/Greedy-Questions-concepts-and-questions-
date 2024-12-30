@@ -1,0 +1,60 @@
+class Solution {
+    
+    
+  static bool comp(pair<int,int> a,pair<int,int> b)    //this would sort in order of second elements ,if second elements same 1st element is selected to sort
+    {
+        if(a.second==b.second)
+        {
+            return a.first<b.first;
+        }
+        
+      return a.second<b.second;
+    }
+    
+  
+  public:
+    // Function to find the maximum number of meetings that can
+    // be performed in a meeting room.
+    int maxMeetings(vector<int>& start, vector<int>& end) {
+        // Your code here
+        
+        
+        vector<pair<int,int>> v;
+        pair<int,int> p;
+        
+        for(int i=0;i<start.size();i++)
+        {
+            p={start[i],end[i]};
+            
+            v.push_back(p);
+        }
+        
+        sort(v.begin(),v.end(),comp);
+        
+    if(v.size()>0)    
+    {
+        int str=v[0].first,ed=v[0].second;
+        
+        
+         int s=1;
+        
+        for(int i=1;i<v.size();i++)
+        {
+             if(v[i].first>ed)
+             {
+                 str=v[i].first;
+                 ed=v[i].second;
+                 s++;
+             }
+        }
+        
+        
+        return s;
+    }
+    
+    return 0;
+        
+    }
+        
+        
+};
